@@ -3,6 +3,15 @@ namespace intValues
 {
     public class intValues
     {
+        public static void printer(ref int[] quants)
+        {
+
+            for (int i = 0; i < quants.Length; i++)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"Valor número {i + 1}: {quants[i]}");
+            }
+        }
         public static void Main()
         {
             int quantiti;
@@ -17,12 +26,26 @@ namespace intValues
                     Console.WriteLine("Introdueix un valor enter");
                     quants[i] = Convert.ToInt32(Console.ReadLine());
                 }
-                for (int i = 0;i < quants.Length; i++)
+                Console.WriteLine();
+                Console.WriteLine("Els valors són:");
+                printer(ref quants);
+
+                for (int i = 1; i < quantiti; i++)
                 {
-                    Console.WriteLine();
-                    Console.WriteLine($"Valor número {i + 1}");
-                    Console.WriteLine(quants[i]);
+                    for (int j = 0; j < quantiti - 1; j++)
+                    {
+                        int order;
+                        if (quants[j] < quants[i])
+                        {
+                            order = quants[j];
+                            quants[j] = quants[i];
+                            quants[i] = order;
+                        }
+                    }
                 }
+                Console.WriteLine();
+                Console.WriteLine("Els valors endresats de més gran a més petit són:");
+                printer(ref quants);
             }
             catch
             {
